@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="Todo.css">
+</head>
+<body>
+    <h1>Task Manager</h1>
+
+    <h2>Create New Task</h2>
+    <form>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="ACTIVE">Active</option>
+            <option value="COMPLETED">Completed</option>
+        </select><br><br>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="null">null</option>
+            <option value="CRITICAL">CRITICAL</option>
+            <option value="HIGH">HIGH</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="LOW">LOW</option>
+        </select><br><br>
+
+        <label for="deadline">Deadline:</label>
+        <input type="date" id="deadline" name="deadline">
+        <button type="submit" id="createTaskButton">Create Task</button>
+
+        <div id="sortingControls">
+            <label for="sortBy">Sort By:</label>
+            <select id="sortBy" name="sortBy">
+                <option value="createdAt">Created At</option>
+                <option value="updatedAt">Updated At</option>
+                <option value="title">Title</option>
+                <option value="deadline">Deadline</option>
+                <option value="priority">Priority</option>
+                <option value="status">Status</option>
+            </select>
+        
+            <label for="sortDirection">Sort Direction:</label>
+            <select id="sortDirection" name="sortDirection">
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+            </select>
+            <button type="button" id="loadTasksButton">Load Tasks</button>
+    </form>
+
+    <h2>Task List</h2>
+    <ul id="taskList"></ul>
+
+    <script src="Todo.js"></script>
+</body>
+</html>
