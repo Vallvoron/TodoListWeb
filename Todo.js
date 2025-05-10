@@ -92,10 +92,8 @@ function displayTasks(tasks) {
             <p>Priority: ${task.priority}</p>
             ${deadline ? `<p>Deadline: ${deadline.toLocaleDateString()}</p>` : ''}
             <p>Status: ${task.status}</p>
-            <p>Created at: ${task.createdAt}</p>
-            <p>Updated at: ${task.updatedAt}</p>
             <button data-task-id="${task.id}" class="edit-button">Edit</button>
-            <button onclick="deleteTask('${task.id}')">Delete</button>
+            <button  class="delete-button" onclick="deleteTask('${task.id}')">Delete</button>
         `;
         taskList.appendChild(li);
     });
@@ -174,6 +172,7 @@ function showForm(task) {
         const titleInput = document.createElement('input');
         titleInput.type = 'text';
         titleInput.name = 'title';
+        titleInput.id = 'editTitle';
         titleInput.value = task.title;
         titleInput.required = true;
         editForm.appendChild(titleInput);
@@ -186,6 +185,7 @@ function showForm(task) {
 
         const descriptionTextarea = document.createElement('textarea');
         descriptionTextarea.name = 'description';
+        descriptionTextarea.id = 'editDescription';
         descriptionTextarea.textContent = task.description;
         editForm.appendChild(descriptionTextarea);
         editForm.appendChild(document.createElement('br'));
@@ -198,6 +198,7 @@ function showForm(task) {
         const statusCheckbox = document.createElement('input');
         statusCheckbox.type = 'checkbox';
         statusCheckbox.name = 'status';
+        statusCheckbox.id = 'editStatus';
         statusCheckbox.checked = task.status === 'COMPLETED';
         editForm.appendChild(statusCheckbox);
         editForm.appendChild(document.createElement('br'));
@@ -210,6 +211,7 @@ function showForm(task) {
 
         const prioritySelect = document.createElement('select');
         prioritySelect.name = 'priority';
+        prioritySelect.id = 'editPriority';
 
         const priorityOptions = [null, "CRITICAL", "HIGH", "MEDIUM", "LOW"];
         priorityOptions.forEach(priorityValue => {
@@ -234,6 +236,7 @@ function showForm(task) {
         const deadlineInput = document.createElement('input');
         deadlineInput.type = 'date';
         deadlineInput.name = 'deadline';
+        deadlineInput.id = 'editDeadline';
         deadlineInput.value = task.deadline ? task.deadline.split('T')[0] : ''; 
 
         editForm.appendChild(deadlineInput);
