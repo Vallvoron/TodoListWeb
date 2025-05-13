@@ -1,12 +1,12 @@
+import dayjs from 'dayjs';
 describe('Task Manager', () => {
   const API_URL ='http://127.0.0.1:3000/Todo.html';//'http://localhost:8080/api/tasks';
   const WEB_URL = 'http://127.0.0.1:3000/Todo.html';
 
-  // Clean up tasks before each test
  beforeEach(() => {
   // Clear all tasks before each test
   cy.intercept('GET', WEB_URL).as('getTasks');
-  cy.intercept('DELETE', `${API_URL}?id=*`).as('deleteTask');
+  cy.intercept('DELETE', `${WEB_URL}?id=*`).as('deleteTask');
   cy.intercept('POST', API_URL).as('createTask');
   cy.intercept('PUT', `${API_URL}?id=*`).as('editTask');
 
@@ -130,6 +130,7 @@ describe('Task Manager', () => {
 
   // 8. Highlight Tasks by Deadline
   it('should highlight tasks with approaching or overdue deadlines', () => {
+     const upcomingDate = dayjs().add(1, 'day').format('YYYY-MM-DD');
     // Create an overdue task
     cy.visit(WEB_URL);
     cy.get('#title').type('Overdue Task !2');
@@ -140,7 +141,7 @@ describe('Task Manager', () => {
     // Create a task with a deadline in less than 3 days
     cy.get('#title').type('Upcoming Task !3');
     cy.get('#description').type('This task is coming soon.');
-    cy.get('#deadline').type('2025-05-11');
+    cy.get('#deadline').type(upcomingDate);
     cy.get('#createTaskButton').click();
     
     cy.get('#taskList')

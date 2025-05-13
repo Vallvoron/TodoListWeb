@@ -199,7 +199,9 @@ function showForm(task) {
         statusCheckbox.type = 'checkbox';
         statusCheckbox.name = 'status';
         statusCheckbox.id = 'editStatus';
-        statusCheckbox.checked = task.status === 'COMPLETED';
+        if(task.status === 'COMPLETED'||task.status ==='LATE')
+        statusCheckbox.checked = true;
+        else statusCheckbox.checked = false;
         editForm.appendChild(statusCheckbox);
         editForm.appendChild(document.createElement('br'));
         editForm.appendChild(document.createElement('br'));
